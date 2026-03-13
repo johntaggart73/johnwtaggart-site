@@ -584,10 +584,11 @@
     /* standalones */
     .standalones-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 1px;
       background: var(--border);
       margin-top: 3rem;
+      max-width: 560px;
     }
 
     .standalone-tile {
@@ -1075,6 +1076,22 @@
         </div>
       </div>
 
+      <!-- Eva's Heir -->
+      <div class="series-block">
+        <div class="series-header">
+          <h3 class="series-name">Eva's Heir Series</h3>
+          <span class="series-count">5 Books · In Development</span>
+          <span class="series-protagonist">Spy Thriller</span>
+        </div>
+        <div class="books-row" style="grid-template-columns: 1fr;">
+          <div class="book-tile" style="padding: 2rem;">
+            <span class="book-num">Five-Book Series · In Development</span>
+            <div class="book-tile-title" style="font-size: 1rem; line-height: 1.5; margin-bottom: 0.8rem;">Buenos Aires. London. Eighty years of buried history and the two heirs left to decide what to do with it.</div>
+            <div class="book-tile-year">Coming</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Standalones -->
       <div class="reveal">
         <p class="section-label">Standalone Novels</p>
@@ -1085,11 +1102,6 @@
             <div class="standalone-title">The Storm's Alibi</div>
             <p class="standalone-desc">Galveston, September 1900. The deadliest hurricane in American history. The perfect alibi. A story of what catastrophe conceals — and what it cannot.</p>
             <a href="https://www.thestormsalibi.com" class="btn-ghost" style="display:inline-flex; margin-top:1.2rem; font-size:0.6rem;">Book Page →</a>
-          </div>
-          <div class="standalone-tile">
-            <span class="standalone-label">Thriller · Coming Soon</span>
-            <div class="standalone-title">The Architects of the Bloodline</div>
-            <p class="standalone-desc">A standalone thriller. Details to follow.</p>
           </div>
         </div>
       </div>
