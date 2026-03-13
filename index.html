@@ -815,13 +815,8 @@
     .d5 { animation-delay: 0.8s; }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ── MOBILE ── */
@@ -1167,22 +1162,7 @@
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-
-    // Fallback: reveal everything after 2s in case observer fails
-    setTimeout(() => {
-      reveals.forEach(el => el.classList.add('visible'));
-    }, 2000);
+    // Scroll reveal - disabled, all content visible by default
 
     // Newsletter
     function handleSignup(e) {
