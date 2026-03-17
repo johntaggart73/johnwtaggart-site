@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Recurrence Protocol by John W. Taggart — A signal no one was meant to find. A countdown twelve thousand years in the making." />
-  <title>The Recurrence Protocol — John W. Taggart</title>
+  <meta name="description" content="John W. Taggart — author of The Recurrence Protocol and The Storm's Alibi. Techno-archaeological thrillers and historical fiction." />
+  <title>John W. Taggart — Author</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg:         #080a0f;
-      --bg-surface: #0d1018;
-      --gold:       #c9a84c;
-      --gold-dim:   #a07c2e;
-      --text:       #e2d8c8;
-      --text-muted: #8a7f6f;
-      --text-dim:   #3e3a32;
-      --border:     #1e2130;
+      --bg:          #09090b;
+      --bg-surface:  #0e0e11;
+      --bg-card:     #141418;
+      --bg-card-hover: #1a1a20;
+      --gold:        #c9a84c;
+      --gold-dim:    #a07c2e;
+      --gold-muted:  #6b5120;
+      --gold-faint:  rgba(201,168,76,0.08);
+      --text:        #e8e0d0;
+      --text-muted:  #8a8070;
+      --text-dim:    #3e3c36;
+      --border:      #242428;
       --border-gold: rgba(201,168,76,0.2);
-      --teal:       #4a9ea8;
+      --teal:        #4a9ea8;
+      --olive:       #7a8c4a;
 
       --serif-display: 'Cormorant Garamond', Georgia, serif;
       --serif-body:    'Crimson Pro', Georgia, serif;
@@ -40,216 +45,163 @@
       overflow-x: hidden;
     }
 
-    /*/* Full bleed background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 72% 5%, rgba(255,255,255,0.2) 0%, transparent 100%),
-        radial-gradient(1px 1px at 88% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 10% 45%, rgba(255,255,255,0.2) 0%, transparent 100%),
-        radial-gradient(1px 1px at 92% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 25% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
-        radial-gradient(1px 1px at 65% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.2) 0%, transparent 100%);
-    }
-
     /* Grain */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 1000;
-      opacity: 0.02;
+      z-index: 9999;
+      opacity: 0.022;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 200px 200px;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.5rem 2.5rem;
+      z-index: 500;
+      padding: 1.4rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(8,10,15,0.9) 0%, transparent 100%);
+      transition: background 0.4s, backdrop-filter 0.4s;
     }
 
-    .nav-author {
+    nav.scrolled {
+      background: rgba(9,9,11,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-family: var(--serif-display);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
       font-family: var(--sans);
-      font-size: 0.62rem;
+      font-size: 0.65rem;
       font-weight: 300;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-muted);
-      transition: color 0.25s;
+      transition: color 0.2s;
     }
-    .nav-author:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--gold); }
 
-    .nav-series {
-      font-family: var(--sans);
-      font-size: 0.58rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
       position: relative;
-      z-index: 1;
-      padding: 6rem 0 4rem;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
     }
 
-    /* deep space gradient on left */
-    .hero::before {
-      content: '';
+    .hero-bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(74,158,168,0.04) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.03) 0%, transparent 50%);
-      pointer-events: none;
+      background-image: url('trp-bg.png');
+      background-size: cover;
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      filter: brightness(0.35);
     }
 
-    .hero-cover {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem 3rem 2rem 4rem;
-      position: relative;
-    }
-
-    .hero-cover img {
-      width: 100%;
-      max-width: 360px;
-      box-shadow:
-        0 0 60px rgba(74,158,168,0.12),
-        0 0 120px rgba(74,158,168,0.06),
-        0 40px 80px rgba(0,0,0,0.6);
-      position: relative;
-      z-index: 1;
-      animation: coverFloat 6s ease-in-out infinite;
-    }
-
-    @keyframes coverFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    /* glow behind cover */
-    .hero-cover::after {
-      content: '';
+    .hero-overlay {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px; height: 400px;
-      background: radial-gradient(ellipse, rgba(74,158,168,0.08) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(9,9,11,0.92) 0%, rgba(9,9,11,0.6) 55%, rgba(9,9,11,0.3) 100%),
+        linear-gradient(to bottom, rgba(9,9,11,0.2) 0%, transparent 30%, rgba(9,9,11,0.95) 100%);
     }
 
-    .hero-text {
-      padding: 2rem 4rem 2rem 2rem;
+    .hero-content {
       position: relative;
       z-index: 1;
+      padding: 10rem 2.5rem 8rem;
+      max-width: 680px;
     }
 
     .hero-eyebrow {
       font-family: var(--sans);
       font-size: 0.6rem;
       font-weight: 300;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--teal);
-      opacity: 0.8;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    .hero-title {
-      font-family: var(--serif-display);
-      font-weight: 300;
-      line-height: 1.0;
-      letter-spacing: 0.03em;
-      color: var(--text);
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-title .the {
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      display: block;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 300;
-      margin-bottom: 0.3rem;
-    }
-
-    .hero-title .main {
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      display: block;
-      line-height: 0.95;
-    }
-
-    .hero-author {
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--gold);
       opacity: 0.8;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       display: block;
     }
 
-    .hero-rule {
-      width: 50px;
-      height: 1px;
-      background: linear-gradient(to right, var(--gold), transparent);
-      margin-bottom: 2rem;
-      opacity: 0.5;
-    }
-
-    .hero-hook {
+    .hero-name {
       font-family: var(--serif-display);
-      font-size: clamp(1rem, 1.8vw, 1.2rem);
-      font-style: italic;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
       font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      color: var(--text);
       margin-bottom: 1.5rem;
     }
 
-    .hero-hook strong {
-      color: var(--text);
-      font-style: normal;
-      font-weight: 400;
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+      opacity: 0.9;
     }
 
-    .hero-synopsis {
-      font-size: 0.97rem;
-      line-height: 1.85;
+    .hero-rule {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-rule span {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0.5;
+    }
+
+    .hero-rule p {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .hero-tagline {
+      font-family: var(--serif-display);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-style: italic;
+      font-weight: 300;
       color: var(--text-muted);
+      line-height: 1.65;
       margin-bottom: 2.5rem;
+      max-width: 520px;
     }
-
-    .hero-synopsis p + p { margin-top: 1rem; }
 
     .hero-cta-group {
       display: flex;
@@ -259,102 +211,576 @@
 
     .btn-primary {
       font-family: var(--sans);
-      font-size: 0.65rem;
+      font-size: 0.63rem;
       font-weight: 300;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--bg);
       background: var(--gold);
-      padding: 0.9rem 2rem;
+      padding: 0.85rem 2rem;
       transition: background 0.25s;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
     }
-    .btn-primary:hover { background: #e8c468; }
+    .btn-primary:hover { background: #dbb85a; }
 
-    .btn-secondary {
+    .btn-ghost {
       font-family: var(--sans);
-      font-size: 0.65rem;
+      font-size: 0.63rem;
       font-weight: 300;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-muted);
       border: 1px solid var(--border);
-      padding: 0.9rem 2rem;
+      padding: 0.85rem 2rem;
       transition: border-color 0.25s, color 0.25s;
     }
-    .btn-secondary:hover { border-color: var(--gold-dim); color: var(--gold); }
+    .btn-ghost:hover { border-color: var(--gold-dim); color: var(--gold); }
 
-    /* SERIES BAR */
-    .series-bar {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-      background: var(--bg-surface);
-    }
-
-    .series-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 2rem;
+      gap: 0.5rem;
+      z-index: 1;
     }
 
-    .series-inner span {
+    .hero-scroll span {
       font-family: var(--sans);
-      font-size: 0.62rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--text-dim), transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; }
+      50% { opacity: 0.9; }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-family: var(--serif-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-top: 0.8rem;
+      line-height: 1.1;
+    }
+
+    .gold-rule {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0.5;
+      margin: 1.2rem 0;
+    }
+
+    /* ── NEWS ── */
+    #news { background: var(--bg-surface); }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 3rem;
+      background: var(--border);
+    }
+
+    .news-card {
+      background: var(--bg-card);
+      padding: 2.2rem;
+      transition: background 0.3s;
+      position: relative;
+    }
+    .news-card:hover { background: var(--bg-card-hover); }
+
+    .news-date {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .news-title {
+      font-family: var(--serif-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+    }
+
+    .news-body {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .news-tag {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      font-family: var(--sans);
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid;
+    }
+
+    .tag-new { color: #7a9e7e; border-color: rgba(122,158,126,0.3); }
+    .tag-series { color: var(--gold); border-color: var(--border-gold); }
+    .tag-coming { color: var(--text-dim); border-color: var(--border); }
+
+    /* ── FEATURED BOOK ── */
+    #featured { background: var(--bg); }
+
+    .featured-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .featured-cover {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .featured-cover img {
+      width: 100%;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(201,168,76,0.08);
+    }
+
+    .featured-badge {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .featured-title {
+      font-family: var(--serif-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-hook {
+      font-family: var(--serif-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .featured-hook strong { color: var(--text); font-style: normal; }
+
+    .featured-synopsis {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .featured-synopsis p + p { margin-top: 1rem; }
+
+    /* ── QUOTES ── */
+    #quotes { background: var(--bg-surface); }
+
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 3rem;
+      background: var(--border);
+    }
+
+    .quote-card {
+      background: var(--bg-card);
+      padding: 2.5rem;
+    }
+
+    .quote-mark {
+      font-family: var(--serif-display);
+      font-size: 3.5rem;
+      color: var(--gold);
+      opacity: 0.25;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-text {
+      font-family: var(--serif-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .quote-source {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── UNIVERSE / SERIES ── */
+    #universe { background: var(--bg); }
+
+    .universe-intro {
+      max-width: 680px;
+      margin-bottom: 4rem;
+    }
+
+    .universe-intro p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .series-block { margin-bottom: 4rem; }
+
+    .series-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .series-name {
+      font-family: var(--serif-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .series-count {
+      font-family: var(--sans);
+      font-size: 0.58rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-dim);
     }
 
-    .series-inner strong {
+    .series-protagonist {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-left: auto;
+    }
+
+    .books-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .book-tile {
+      background: var(--bg-card);
+      padding: 1.8rem 1.5rem;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .book-tile:hover { background: var(--bg-card-hover); }
+
+    .book-tile::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: transparent;
+      transition: background 0.3s;
+    }
+    .book-tile:hover::before { background: var(--gold); opacity: 0.4; }
+
+    .book-num {
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .book-tile-title {
       font-family: var(--serif-display);
-      font-size: 1rem;
-      font-weight: 400;
-      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .book-tile-year {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
       color: var(--text-muted);
     }
 
-    .series-dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--gold-dim);
-      opacity: 0.5;
+    .book-tile.available .book-tile-year { color: var(--gold); }
+    .book-tile.available::after {
+      content: 'Available';
+      position: absolute;
+      bottom: 1.2rem; right: 1.2rem;
+      font-family: var(--sans);
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7a9e7e;
+      border: 1px solid rgba(122,158,126,0.3);
+      padding: 0.2rem 0.5rem;
     }
 
-    /* FOOTER */
+    /* standalones */
+    .standalones-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 3rem;
+      max-width: 560px;
+    }
+
+    .standalone-tile {
+      background: var(--bg-card);
+      padding: 2rem;
+      transition: background 0.3s;
+    }
+    .standalone-tile:hover { background: var(--bg-card-hover); }
+
+    .standalone-label {
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .standalone-title {
+      font-family: var(--serif-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .standalone-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 0.6rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg-surface); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      position: sticky;
+      top: 8rem;
+    }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .about-location {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 1.2rem;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 1.3rem;
+    }
+
+    .about-text p:first-child {
+      font-family: var(--serif-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    /* ── NEWSLETTER ── */
+    #newsletter { background: var(--bg); }
+
+    .newsletter-inner {
+      max-width: 560px;
+    }
+
+    .newsletter-inner p {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .nl-form {
+      display: flex;
+      gap: 0;
+      max-width: 460px;
+      margin-bottom: 0.8rem;
+    }
+
+    .nl-form input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-right: none;
+      color: var(--text);
+      font-family: var(--serif-body);
+      font-size: 0.95rem;
+      padding: 0.85rem 1.2rem;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .nl-form input::placeholder { color: var(--text-dim); }
+    .nl-form input:focus { border-color: var(--gold-muted); }
+
+    .nl-form button {
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.6rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.25s;
+    }
+    .nl-form button:hover { background: #dbb85a; }
+
+    #nl-msg {
+      display: none;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .nl-disclaimer {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+
+    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 2rem 0;
-      position: relative;
-      z-index: 1;
+      padding: 2.5rem 0;
     }
 
     .footer-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
-    .footer-copy {
-      font-family: var(--sans);
-      font-size: 0.6rem;
+    .footer-name {
+      font-family: var(--serif-display);
+      font-size: 1rem;
+      font-weight: 300;
       letter-spacing: 0.1em;
-      color: var(--text-dim);
+      color: var(--text-muted);
     }
 
-    .footer-home {
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
       font-family: var(--sans);
       font-size: 0.6rem;
       letter-spacing: 0.18em;
@@ -362,187 +788,400 @@
       color: var(--text-dim);
       transition: color 0.2s;
     }
-    .footer-home:hover { color: var(--gold); }
+    .footer-links a:hover { color: var(--gold); }
 
-    /* ANIMATIONS */
+    .footer-copy {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      width: 100%;
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+    }
+
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .fade-up { animation: fadeUp 0.9s ease both; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.25s; }
-    .delay-3 { animation-delay: 0.4s; }
-    .delay-4 { animation-delay: 0.6s; }
-    .delay-5 { animation-delay: 0.8s; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.25s; }
+    .d3 { animation-delay: 0.4s; }
+    .d4 { animation-delay: 0.6s; }
+    .d5 { animation-delay: 0.8s; }
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 7rem;
-        text-align: center;
-      }
-      .hero-cover { padding: 1rem 3rem; }
-      .hero-cover img { max-width: 260px; }
-      .hero-text { padding: 2rem 1.5rem; }
-      .hero-rule { margin-left: auto; margin-right: auto; }
-      .hero-cta-group { justify-content: center; }
-      .series-inner { flex-direction: column; gap: 0.8rem; }
-      .series-dot { display: none; }
+    .reveal {
+      opacity: 1;
+      transform: none;
     }
 
-    /* NEWSLETTER */
-    .nl-wrap {
-      margin-top: 2.2rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.07);
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .news-grid { grid-template-columns: 1fr; }
+      .quotes-grid { grid-template-columns: 1fr; }
+      .books-row { grid-template-columns: repeat(2, 1fr); }
+      .featured-inner { grid-template-columns: 1fr; }
+      .featured-cover { width: 220px; margin: 0 auto; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-photo { position: static; }
+      .standalones-row { grid-template-columns: 1fr; }
     }
-    .nl-label {
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-    .nl-form {
-      display: flex;
-      gap: 0;
-      max-width: 400px;
-    }
-    .nl-form input {
-      flex: 1;
-      background: rgba(6,8,14,0.7);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-right: none;
-      color: var(--text);
-      font-family: var(--serif-body);
-      font-size: 0.9rem;
-      padding: 0.85rem 1rem;
-      outline: none;
-      backdrop-filter: blur(4px);
-      transition: border-color 0.25s;
-    }
-    .nl-form input::placeholder { color: var(--text-dim); }
-    .nl-form input:focus { border-color: var(--gold-dim); }
-    .nl-form button {
-      background: var(--gold);
-      color: var(--bg);
-      border: none;
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.85rem 1.4rem;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.25s;
-    }
-    .nl-form button:hover { background: #e8c468; }
-    #trp-nl-msg {
-      display: none;
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-      margin-top: 0.6rem;
-    }
-    .nl-disclaimer {
-      font-family: var(--sans);
-      font-size: 0.58rem;
-      letter-spacing: 0.08em;
-      color: var(--text-dim);
-      margin-top: 0.5rem;
+
+    @media (max-width: 600px) {
+      .books-row { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links li:nth-child(n+3) { display: none; }
+      .nl-form { flex-direction: column; }
+      .nl-form input { border-right: 1px solid var(--border); border-bottom: none; }
+      section { padding: 5rem 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="hero-bg" aria-hidden="true"></div>
-
-  <nav>
-    <a href="https://www.johnwtaggart.com" class="nav-author">John W. Taggart</a>
-    <span class="nav-series">The Protocol Series · Book I</span>
-    <a href="https://www.theresonanceuniverse.com" class="nav-series" style="text-decoration:none;opacity:0.6;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">The Resonance Universe</a>
+  <!-- NAV -->
+  <nav id="nav">
+    <span class="nav-name">John W. Taggart</span>
+    <ul class="nav-links">
+      <li><a href="#featured">Books</a></li>
+      <li><a href="#universe">Series</a></li>
+      <li><a href="https://www.theresonanceuniverse.com" target="_blank">Resonance Universe</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#newsletter">Newsletter</a></li>
+      <li><a href="https://a.co/d/06tgzZIH" target="_blank" rel="noopener">Amazon</a></li>
+    </ul>
   </nav>
 
-  <main class="hero">
-    <div class="hero-cover fade-up">
-      <img src="trp-cover.jpg" alt="The Recurrence Protocol book cover — ancient stone monuments under a night sky with a comet" />
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content container">
+      <span class="hero-eyebrow fade-up">Techno-Archaeological Thriller · Historical Fiction</span>
+      <h1 class="hero-name fade-up d1">
+        John W.<br><em>Taggart</em>
+      </h1>
+      <div class="hero-rule fade-up d2">
+        <span></span>
+        <p>Three series · Twelve books · One architecture</p>
+      </div>
+      <p class="hero-tagline fade-up d3">
+        Ancient evidence. Hidden patterns. The truth buried twelve thousand years ago — and the people willing to kill to keep it that way.
+      </p>
+      <div class="hero-cta-group fade-up d4">
+        <a href="https://a.co/d/06tgzZIH" target="_blank" rel="noopener" class="btn-primary">
+          Order The Recurrence Protocol
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5h10M6 1l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#universe" class="btn-ghost">Explore the Universe</a>
+      </div>
     </div>
 
-    <div class="hero-text">
-      <span class="hero-eyebrow fade-up delay-1">Now Available</span>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-      <h1 class="hero-title fade-up delay-2">
-        <span class="the">The</span>
-        <span class="main">Recurrence<br>Protocol</span>
-      </h1>
+  <!-- NEWS -->
+  <section id="news">
+    <div class="container">
+      <p class="section-label reveal">Latest</p>
+      <h2 class="section-title reveal">News &amp; Updates</h2>
+      <div class="gold-rule reveal"></div>
 
-      <span class="hero-author fade-up delay-2">John W. Taggart</span>
+      <div class="news-grid reveal">
+        <div class="news-card">
+          <span class="news-tag tag-new">Available Now</span>
+          <span class="news-date">March 2026</span>
+          <h3 class="news-title">The Recurrence Protocol is available on Amazon</h3>
+          <p class="news-body">The debut novel in The Protocol Series is now available in paperback and Kindle. Book 1 of a four-book series following NASA astronomer Daniel Mercer.</p>
+        </div>
+        <div class="news-card">
+          <span class="news-tag tag-series">Series</span>
+          <span class="news-date">2026</span>
+          <h3 class="news-title">The Connected Universe — 12 books mapped</h3>
+          <p class="news-body">Three interconnected series spanning 2019 to 2031. Three protagonists who never meet. One architecture that only becomes visible to the reader who completes all three.</p>
+        </div>
+        <div class="news-card">
+          <span class="news-tag tag-coming">Coming Soon</span>
+          <span class="news-date">2026</span>
+          <h3 class="news-title">The Storm's Alibi — in development</h3>
+          <p class="news-body">A historical novel set during the 1900 Galveston hurricane. Galveston, September 8. The deadliest natural disaster in American history. The perfect alibi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="hero-rule fade-up delay-3"></div>
+  <!-- FEATURED BOOK -->
+  <section id="featured">
+    <div class="container">
+      <div class="featured-inner reveal">
+        <div class="featured-cover">
+          <img src="trp-cover.jpg" alt="The Recurrence Protocol by John W. Taggart" />
+        </div>
+        <div class="featured-text">
+          <span class="featured-badge">The Protocol Series · Book I · Available Now</span>
+          <h2 class="featured-title">The Recurrence<br>Protocol</h2>
+          <div class="gold-rule"></div>
+          <p class="featured-hook">
+            <strong>A signal no one was meant to find.<br>A countdown twelve thousand years in the making.</strong>
+          </p>
+          <div class="featured-synopsis">
+            <p>When NASA astronomer Daniel Mercer detects an anomaly in the world's atomic clocks, he traces it to a twelve-thousand-year-old monument in southeastern Turkey — and to a classified program that has been monitoring the same signal since 1945.</p>
+            <p>With the cover-up unraveling, the anomaly accelerating, and no modern infrastructure prepared for what is coming, Daniel and archaeologist Miriam Hale race to decode what the builders of Göbekli Tepe encoded in stone: not a warning. An instruction.</p>
+          </div>
+          <div class="hero-cta-group">
+            <a href="https://a.co/d/06tgzZIH" target="_blank" rel="noopener" class="btn-primary">Order on Amazon</a>
+            <a href="https://www.therecurrenceprotocol.com" class="btn-ghost">Book Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <p class="hero-hook fade-up delay-3">
-        <strong>A signal no one was meant to find.<br>A countdown twelve thousand years in the making.</strong>
-      </p>
+  <!-- QUOTES -->
+  <section id="quotes">
+    <div class="container">
+      <p class="section-label reveal">Readers on The Recurrence Protocol</p>
+      <h2 class="section-title reveal">What They're Saying</h2>
+      <div class="gold-rule reveal"></div>
 
-      <div class="hero-synopsis fade-up delay-4">
-        <p>When NASA astronomer Daniel detects an anomaly in the world's atomic clocks, he traces it to a twelve-thousand-year-old monument in southeastern Turkey — and to a classified program that has been monitoring the same signal since 1945.</p>
-        <p>With the cover-up unraveling, the anomaly accelerating, and no modern infrastructure prepared for what is coming, Daniel and archaeologist Miriam Hale race to decode what the builders of Göbekli Tepe encoded in stone: not a warning.</p>
-        <p><em>An instruction.</em></p>
+      <div class="quotes-grid reveal">
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <p class="quote-text">A debut that reads like a career's worth of craft — the kind of thriller that makes you distrust every history textbook you've ever read.</p>
+          <span class="quote-source">Early Reader</span>
+        </div>
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <p class="quote-text">Taggart does what the best writers in this genre do: he makes the science feel inevitable and the history feel dangerous. I finished it in two sittings.</p>
+          <span class="quote-source">Early Reader</span>
+        </div>
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <p class="quote-text">The Recurrence Protocol sits in the tradition of Brown and Rollins but with a colder, more grounded intelligence. The architecture is unlike anything I've read in the genre.</p>
+          <span class="quote-source">Early Reader</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIVERSE -->
+  <section id="universe">
+    <div class="container">
+      <p class="section-label reveal">The Connected Universe</p>
+      <h2 class="section-title reveal">Twelve Books. Three Series.<br>One Architecture.</h2>
+      <div class="gold-rule reveal"></div>
+
+      <div class="universe-intro reveal">
+        <p>Three protagonists who never meet — except in the reader, who holds all three simultaneously. Each series is independently complete as a thriller. Together they describe something that took twelve thousand years to finish. The full architecture becomes visible only to the reader who completes all three series.</p>
       </div>
 
+      <!-- Protocol Series -->
+      <div class="series-block reveal">
+        <div class="series-header">
+          <h3 class="series-name">The Protocol Series</h3>
+          <span class="series-count">4 Books · 2026–2031</span>
+          <span class="series-protagonist">Daniel Mercer · NASA Astronomer</span>
+        </div>
+        <div class="books-row">
+          <div class="book-tile available">
+            <span class="book-num">Book 1</span>
+            <div class="book-tile-title">The Recurrence Protocol</div>
+            <div class="book-tile-year">2026</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 2</span>
+            <div class="book-tile-title">The Alignment Protocol</div>
+            <div class="book-tile-year">2027</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 3</span>
+            <div class="book-tile-title">The Origin Protocol</div>
+            <div class="book-tile-year">2029</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 4</span>
+            <div class="book-tile-title">The Terminal Protocol</div>
+            <div class="book-tile-year">2030–2031</div>
+          </div>
+        </div>
+      </div>
 
-      <div class="nl-wrap fade-up delay-5">
-        <span class="nl-label">Get updates on Book II and the full series</span>
-        <form class="nl-form" onsubmit="handleTRPSignup(event)">
-          <input type="email" id="trp-nl-email" placeholder="your@email.com" required autocomplete="email" />
+      <!-- Directive Series -->
+      <div class="series-block reveal">
+        <div class="series-header">
+          <h3 class="series-name">The Directive Series</h3>
+          <span class="series-count">4 Books · 2027–2029</span>
+          <span class="series-protagonist">Aimee Mercer · Investigative Journalist</span>
+        </div>
+        <div class="books-row">
+          <div class="book-tile">
+            <span class="book-num">Book 1</span>
+            <div class="book-tile-title">The Wardenclyffe Directive</div>
+            <div class="book-tile-year">2027</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 2</span>
+            <div class="book-tile-title">The HAARP Directive</div>
+            <div class="book-tile-year">2027</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 3</span>
+            <div class="book-tile-title">The Philadelphia Directive</div>
+            <div class="book-tile-year">2028</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 4</span>
+            <div class="book-tile-title">The NDA Directive</div>
+            <div class="book-tile-year">2029</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sequence Series -->
+      <div class="series-block reveal">
+        <div class="series-header">
+          <h3 class="series-name">The Sequence Series</h3>
+          <span class="series-count">4 Books · 2028–2030</span>
+          <span class="series-protagonist">Wren Fontaine · Geophysicist</span>
+        </div>
+        <div class="books-row">
+          <div class="book-tile">
+            <span class="book-num">Book 1</span>
+            <div class="book-tile-title">The Draco Sequence</div>
+            <div class="book-tile-year">2028</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 2</span>
+            <div class="book-tile-title">The Schumann Sequence</div>
+            <div class="book-tile-year">2029</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 3</span>
+            <div class="book-tile-title">The Laschamps Sequence</div>
+            <div class="book-tile-year">2029</div>
+          </div>
+          <div class="book-tile">
+            <span class="book-num">Book 4</span>
+            <div class="book-tile-title">The Node Sequence</div>
+            <div class="book-tile-year">2030</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eva's Heir -->
+      <div class="series-block">
+        <div class="series-header">
+          <h3 class="series-name">Eva's Heir Series</h3>
+          <span class="series-count">5 Books · In Development</span>
+          <span class="series-protagonist">Spy Thriller</span>
+        </div>
+        <div class="books-row" style="grid-template-columns: 1fr;">
+          <div class="book-tile" style="padding: 2rem;">
+            <span class="book-num">Five-Book Series · In Development</span>
+            <div class="book-tile-title" style="font-size: 1rem; line-height: 1.5; margin-bottom: 0.8rem;">Buenos Aires. London. Eighty years of buried history and the two heirs left to decide what to do with it.</div>
+            <div class="book-tile-year">Coming</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standalones -->
+      <div class="reveal">
+        <p class="section-label">Standalone Novels</p>
+        <div class="gold-rule" style="margin: 1rem 0 1.5rem;"></div>
+        <div class="standalones-row">
+          <div class="standalone-tile">
+            <span class="standalone-label">Historical Fiction · 2026</span>
+            <div class="standalone-title">The Storm's Alibi</div>
+            <p class="standalone-desc">Galveston, September 1900. The deadliest hurricane in American history. The perfect alibi. A story of what catastrophe conceals — and what it cannot.</p>
+            <a href="https://www.thestormsalibi.com" class="btn-ghost" style="display:inline-flex; margin-top:1.2rem; font-size:0.6rem;">Book Page →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <aside class="about-photo">
+          <div class="photo-frame">
+            <img src="john_taggart_author_photo.png" alt="John W. Taggart, author" />
+          </div>
+          <p class="about-location">Tiki Island · Texas Gulf Coast</p>
+        </aside>
+
+        <div class="about-text">
+          <p class="section-label">The Author</p>
+          <h2 class="section-title" style="margin-bottom:1.5rem;">John W. Taggart</h2>
+          <p>There's a particular kind of unease that comes from realizing the past isn't settled — that the ground beneath accepted history is softer than it looks. That unease is where John W. Taggart's fiction begins.</p>
+          <p>Writing at the intersection of archaeology, science, and suspense, John builds thrillers that treat the historical record not as background but as evidence — layered, contested, and occasionally dangerous. His debut novel, <em>The Recurrence Protocol</em>, is the first book in a twelve-novel connected universe spanning three series. Three protagonists. Three science registers. One architecture that only becomes fully visible to the reader who completes all three.</p>
+          <p>He lives on Tiki Island on the Texas Gulf Coast, within sight of the waters that consumed Galveston on September 8, 1900 — the same waters at the heart of his first standalone novel, <em>The Storm's Alibi</em>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-inner reveal">
+        <p class="section-label">Stay Connected</p>
+        <h2 class="section-title">Updates &amp; New Releases</h2>
+        <div class="gold-rule"></div>
+        <p>New releases, series updates, cover reveals, and research dispatches from wherever the work is taking me. Infrequent and deliberate — no noise.</p>
+
+        <form class="nl-form" onsubmit="handleSignup(event)">
+          <input type="email" id="nl-email" placeholder="your@email.com" required autocomplete="email" />
           <button type="submit">Subscribe</button>
         </form>
-        <p id="trp-nl-msg">You're on the list. Thank you.</p>
-        <p class="nl-disclaimer">No spam. Unsubscribe any time.</p>
-      </div>
-
-      <div class="hero-cta-group fade-up delay-5">
-        <a href="https://a.co/d/06tgzZIH" target="_blank" rel="noopener" class="btn-primary">
-          Order on Amazon
-          <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true">
-            <path d="M1 5h10M6 1l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a href="https://www.johnwtaggart.com" class="btn-secondary">Author Site</a>
+        <p id="nl-msg">You're on the list. Thank you.</p>
+        <p class="nl-disclaimer">No spam. Unsubscribe at any time.</p>
       </div>
     </div>
-  </main>
+  </section>
 
-  <div class="series-bar">
-    <div class="series-inner">
-      <span>Book I</span>
-      <div class="series-dot"></div>
-      <strong>The Protocol Series</strong>
-      <div class="series-dot"></div>
-      <span>John W. Taggart</span>
-    </div>
-  </div>
-
+  <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <span class="footer-copy">&copy; 2026 John W. Taggart. All rights reserved.</span>
-      <a href="https://www.theresonanceuniverse.com" class="footer-home">The Resonance Universe</a>
-      <a href="https://www.johnwtaggart.com" class="footer-home">← johnwtaggart.com</a>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">John W. Taggart</span>
+        <ul class="footer-links">
+          <li><a href="https://www.theresonanceuniverse.com" target="_blank">Resonance Universe</a></li>
+          <li><a href="https://a.co/d/06tgzZIH" target="_blank" rel="noopener">Amazon</a></li>
+          <li><a href="https://www.goodreads.com" target="_blank" rel="noopener">Goodreads</a></li>
+          <li><a href="https://www.therecurrenceprotocol.com" target="_blank">The Recurrence Protocol</a></li>
+          <li><a href="https://www.thestormsalibi.com" target="_blank">The Storm's Alibi</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#593336313719333631372e2d383e3e382b2d773a3634">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">&copy; 2026 John W. Taggart. All rights reserved.</p>
     </div>
   </footer>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
 
-  <script>
-    async function handleTRPSignup(e) {
+    // Scroll reveal - disabled, all content visible by default
+
+    // Newsletter
+    async function handleSignup(e) {
       e.preventDefault();
-      const email = document.getElementById('trp-nl-email').value;
+      const email = document.getElementById('nl-email').value;
       const btn = e.target.querySelector('button');
       btn.textContent = 'Sending...';
       btn.disabled = true;
@@ -556,8 +1195,8 @@
           body: JSON.stringify({ email: email, groups: ['181820865412859816'] })
         });
         if (res.status === 200 || res.status === 201) {
-          document.getElementById('trp-nl-msg').style.display = 'block';
-          document.getElementById('trp-nl-email').value = '';
+          document.getElementById('nl-msg').style.display = 'block';
+          document.getElementById('nl-email').value = '';
           btn.textContent = 'Subscribed!';
         } else {
           btn.textContent = 'Try again';
@@ -568,6 +1207,8 @@
         btn.disabled = false;
       }
     }
+    }
   </script>
+
 </body>
 </html>
